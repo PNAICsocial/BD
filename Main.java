@@ -8,13 +8,13 @@ public class Main{
 		DAOUsuario conexao = new DAOUsuario();
 		Scanner sc = new Scanner(System.in);
 		
+		System.out.println("Digite seu e-mail: ");
+		String email = sc.next();
+		
 		int senha = 0;
 		boolean senhaInvalida = true;
 		
 		while(senhaInvalida) {
-		
-		System.out.println("Digite seu e-mail: ");
-		String email = sc.next();
 		
 		try{
 			System.out.println("Digite sua senha: ");
@@ -22,8 +22,9 @@ public class Main{
 			sc.next();
 			senhaInvalida = false;
 		} catch(InputMismatchException e){
-			System.out.println("Senha inválida! Digite apenas números: ");
-			
+			System.out.println("Senha inválida! Digite apenas números.");
+			System.out.println("Digite sua senha: ");
+			sc.next();
 		}
 		System.out.println("Digite seu nome: ");
 		String nome = sc.next();

@@ -19,22 +19,20 @@ public class Main{
 		try{
 			System.out.println("Digite sua senha: ");
 			senha = sc.nextInt();
-			sc.next();
 			senhaInvalida = false;
 		} catch(InputMismatchException e){
-			System.out.println("Senha inv·lida! Digite apenas n˙meros.");
-			System.out.println("Digite sua senha: ");
-			sc.next();
+			System.out.println("Senha inv√°lida! Digite apenas n√∫meros.");
+			continue;
 		}
 		System.out.println("Digite seu nome: ");
 		String nome = sc.next();
-		System.out.println("Digite seu id de usu·rio: ");
+		System.out.println("Digite seu id de usu√°rio: ");
 		int id_usuario = sc.nextInt();
 		System.out.println("Digite sua idade: ");
 		int idade = sc.nextInt();
 		System.out.println("Digite sua data de nascimento: ");
 		String data_nasc = sc.next();
-		System.out.println("Digite sua profiss„o: ");
+		System.out.println("Digite sua profiss√£o: ");
 		String profissao = sc.next();
 		System.out.println("Digite seu sexo: ");
 		String sexo = sc.next();

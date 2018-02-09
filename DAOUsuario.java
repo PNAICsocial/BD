@@ -120,17 +120,22 @@ public class DAOUsuario {
 		try {
 			// para iterar sobre os resultados de uma consulta, deve-se utilizar o método next()
 			while (resultado.next()) {
-				int id_usuario = resultado.getInt("id_usuario");
-				String nome = resultado.getString("nome");
-				int idade = resultado.getInt("idade");
-				Usuario.add(new Usuario(int id_usuario,String nome, int idade));
+				String email = resultado.getString("email:");
+				int senha = resultado.getInt("senha:");
+				String nome = resultado.getString("nome:");
+				int id_usuario = resultado.getInt("id usuario:");
+				int idade = resultado.getInt("idade:");
+				String data_nasc = resultado.getString("data de nascimento:");
+				String profissao = resultado.getString("profissao:");
+				String sexo = resultado.getString("sexo:");
+				pessoas.add(new Usuario(email, senha, nome, id_usuario, idade, data_nasc, profissao, sexo));
 			}
+			resultado.next();
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());
 		} finally {
 		// o banco deve ser desconectado, mesmo quando a exceção é lançada
 			conexao.desconectar();		}
-		return Usuario;
+		return pessoas;
 	}
-
 }

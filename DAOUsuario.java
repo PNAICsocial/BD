@@ -11,21 +11,14 @@ public class DAOUsuario {
 	private ConexaoBD conexao;
 	
 	public DAOUsuario() {
-		// cria o objeto para conexão com banco, porém não o inicializa
-		// a conexão deve ser aberta e, consequentemente, fechada durante o envio de comandos
-		// ao banco
 		this.conexao = new ConexaoBD();
 	}
 	
 	public void criarUsuario(Usuario U) {
-		// abrindo a conexão com o BD
 		conexao.conectar();
 
 		try {
-			// usando um PreparedStatement com valores externos como parâmetros (representados pelo '?')
 			PreparedStatement pst = conexao.getConexao().prepareStatement("insert into bd.usuario(id_usuario,nome,idade,data_nasc,sexo,profissao,email,senha) values(?,?,?,?,?,?,?,?)");
-			// os métodos set devem ser escolhidos de acordo com os tipos dos atributos da entidade que está
-			// sendo acessada. A sequência é determinada por índices, iniciando do valor 1.
 			pst.setInt(1, U.getid_usuario());
 			pst.setString(2, U.getnome());
 			pst.setInt(3, U.getidade());
@@ -34,23 +27,17 @@ public class DAOUsuario {
 			pst.setString(6, U.getprofissao());
 			pst.setString(7, U.getemail());
 			pst.setInt(8, U.getsenha());
-			// solicitação da execução da query, após seu preparo
 			pst.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());
 		} finally {
-			// o banco deve ser desconectado, mesmo quando a exceção é lançada
 			conexao.desconectar();
 		}
 		
 	}
 	
-	
-	 //busca de pessoas por seu código de identificação no banco (id)
 	public ArrayList<Usuario> buscarPessoa(String n) {
-		// abrindo a conexão com o BD
 		conexao.conectar();
-		// busca utilizando o método de consulta do objeto ConexaoBD
 		ResultSet resultado = conexao.executarSQL("select * from Usuario where nome = \'" + n + "\'");
 		ArrayList<Usuario> usuario = new ArrayList<>();
 		
@@ -71,14 +58,12 @@ public class DAOUsuario {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());
 		} finally {
-			// o banco deve ser desconectado, mesmo quando a exceção é lançada
 			conexao.desconectar();
 		}
 		return usuario;
 	}
 	
 	public void excluirPessoa(int id_usuario) {
-		// abrindo a conexão com o BD
 		conexao.conectar();
 		
 		try {
@@ -87,25 +72,32 @@ public class DAOUsuario {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());
 		} finally {
-			// o banco deve ser desconectado, mesmo quando a exceção é lançada
 			conexao.desconectar();
 		}
 	}
 
-	public void editarPessoa(int id_usuario, String nome, int idade) {
-		// abrindo a conexão com o BD
+	public void editarPessoa(String email, int senha, String nome, int id_usuario, int idade, String data_nasc, String profissao, String sexo) {
 		conexao.conectar();
 		
 		try {
-			PreparedStatement stm = conexao.getConexao().prepareStatement("update Usuario set nome = ?, idade = ? "
-					+ "where cod_pessoa = \'" + id_usuario + "\'");
-			stm.setString(1, nome);
-			stm.setInt(2, idade);
-			stm.execute();
+			while (resultado.next()){
+				PreparedStatement stm = conexao.getConexao().prepareStatement("update Usuario set email = ?, senha = ?, nome = ?, idade = ?, data_nasc = ?, profissao = ?, sexo = ? "
+						+ "where id_pessoa = \'" + id_usuario + "\'");
+				stm.setString(1, email);
+				stm.setInt(2, senha);
+				stm.setInt(3, nome);
+				stm.setInt(4, id_usuario);
+				stm.setInt(5, idade);
+				stm.setInt(6, data_nasc);
+				stm.setInt(7, profissao);
+				stm.setInt(8, sexo);
+				stm.set
+				stm.execute();
+			}
+			resultado.next();
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());
 		} finally {
-			// o banco deve ser desconectado, mesmo quando a exceção é lançada
 			conexao.desconectar();
 		}
 	}
@@ -113,12 +105,10 @@ public class DAOUsuario {
 	public ArrayList<Usuario> verTodos() {
 		ArrayList<Usuario> pessoas = new ArrayList<>();
 		
-		// abrindo a conexão com o BD
 		conexao.conectar();
 		ResultSet resultado = conexao.executarSQL("select * from Usuario");
 		
 		try {
-			// para iterar sobre os resultados de uma consulta, deve-se utilizar o método next()
 			while (resultado.next()) {
 				String email = resultado.getString("email:");
 				int senha = resultado.getInt("senha:");
@@ -134,7 +124,6 @@ public class DAOUsuario {
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());
 		} finally {
-		// o banco deve ser desconectado, mesmo quando a exceção é lançada
 			conexao.desconectar();		}
 		return pessoas;
 	}

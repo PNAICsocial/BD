@@ -1,5 +1,4 @@
-package controllers;
-
+package Controllers;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,31 +7,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexaoBD {
-	
 	private Connection conexao;
 	private String driver, caminho, user, password;
 	
 	public ConexaoBD() {
-		// atributo para definiÁ„o do serviÁo do BD utilizado pela aplicaÁ„o
+		// atributo para defini√ß√£o do servi√ßo do BD utilizado pela aplica√ß√£o
 		this.driver = "org.postgresql.Driver";
-		// atributo para definiÁ„o da url de acesso ao banco
-		this.caminho = "jdbc:postgresql://localhost:5432/projeto";
-		// atributo para definiÁ„o do login do usu·rio no banco
+		// atributo para defini√ß√£o da url de acesso ao banco
+		this.caminho = "jdbc:postgresql://localhost:5432/Projeto";
+		// atributo para defini√ß√£o do login do usu√°rio no banco
 		this.user = "postgres";
-		// atributo para definiÁ„o da senha do usu·rio no banco
-		this.password = "Lucas17";
-		// objeto respons·vel pelo estabelecimento da conex„o com o BD (ser· inicializado quando a conex„o
+		// atributo para defini√ß√£o da senha do usu√°rio no banco
+		this.password = "ifpb";
+		// objeto respons√°vel pelo estabelecimento da conex√£o com o BD (ser√° inicializado quando a conex√£o
 		// com o banco for iniciada)
 		this.conexao = null;
 	}
 	
 	public void conectar() {
-		// seta o drive de conex„o como propriedade do sistema acessÌvel pela aplicaÁ„o ao ser
-		// executada sobre a inst‚ncia da JVM (o driver do BD deve ser importado para o projeto no Java Build Path) 
+		// seta o drive de conex√£o como propriedade do sistema acess√≠vel pela aplica√ß√£o ao ser
+		// executada sobre a inst√¢ncia da JVM (o driver do BD deve ser importado para o projeto no Java Build Path) 
 		System.setProperty("jdbc.Drivers", driver);
 		
 		try {
-			// inicializaÁ„o da conex„o com o banco
+			// inicializa√ß√£o da conex√£o com o banco
 			conexao = DriverManager.getConnection(caminho, user, password);
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());
@@ -41,7 +39,7 @@ public class ConexaoBD {
 	
 	public void desconectar() {
 		try {
-			// finalizaÁ„o da conex„o com o banco (deve sempre ser chamado ao encerrar um
+			// finaliza√ß√£o da conex√£o com o banco (deve sempre ser chamado ao encerrar um
 			// acesso ao banco)
 			conexao.close();
 		} catch (SQLException e) {
@@ -55,7 +53,7 @@ public class ConexaoBD {
 		
 		try {
 			// objeto que permita e realiza a interface dos comandos SQL a serem enviados da
-			// aplicaÁ„o Java para o BD
+			// aplica√ß√£o Java para o BD
 			PreparedStatement stm = conexao.prepareStatement(comando);
 			stm.execute();
 			resultado = stm.getResultSet();
@@ -69,7 +67,7 @@ public class ConexaoBD {
 		return resultado;
 	}
 
-	// para acessar a conex„o (que est· encapsulada)
+	// para acessar a conex√£o (que est√° encapsulada)
 	public Connection getConexao() {
 		return conexao;
 	}

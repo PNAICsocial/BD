@@ -1,45 +1,33 @@
-package controllers;
+package Controllers;
+
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main{
-
+public class Main {
 	public static void main(String[] args) {
 		DAOUsuario conexao = new DAOUsuario();
-		Scanner sc = new Scanner(System.in);
+		Usuario U = new Usuario("larryce@hotmail", 123, "larryce", 1323, 16, "31/10", "estudante", "feminino");
+		//conexao.criarUsuario(U);
 		
-		System.out.println("Digite seu e-mail: ");
-		String email = sc.next();
+		//conexao.editarPessoa("larryce",232,"larryce", 1323,16,"31/10/2001", "estudante", "feminino");
+		//conexao.excluirPessoa(1323);
 		
-		int senha = 0;
-		boolean senhaInvalida = true;
+		Usuario aux= conexao.login("larryce@hotmail", 123);
 		
-		while(senhaInvalida) {
-		
-		try{
-			System.out.println("Digite sua senha: ");
-			senha = sc.nextInt();
-			senhaInvalida = false;
-		} catch(InputMismatchException e){
-			System.out.println("Senha inválida! Digite apenas números.");
-			continue;
+		if (aux == null){
+			System.out.println("Você não está logado");
 		}
-		System.out.println("Digite seu nome: ");
-		String nome = sc.next();
-		System.out.println("Digite seu id de usuário: ");
-		int id_usuario = sc.nextInt();
-		System.out.println("Digite sua idade: ");
-		int idade = sc.nextInt();
-		System.out.println("Digite sua data de nascimento: ");
-		String data_nasc = sc.next();
-		System.out.println("Digite sua profissão: ");
-		String profissao = sc.next();
-		System.out.println("Digite seu sexo: ");
-		String sexo = sc.next();
-		
-		Usuario U = new Usuario(email, senha, nome, id_usuario, idade, data_nasc, profissao, sexo);
-		conexao.criarUsuario(U);
-		U.mostrarCadastrados();	
+		else {
+			System.out.println("você está logado");
+			Usuario buscandousuario =conexao.buscarPessoa("lucas@gmail.com"); 
+			
+			System.out.println(buscandousuario.toString());
+			
+			conexao.addamigo(aux.getid_usuario(), buscandousuario.getid_usuario());
+			
+		}
+			
 	}
-}
+
 }

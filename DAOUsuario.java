@@ -1,6 +1,6 @@
-package Controllers;
+package controllers;
 
-import Controllers.Usuario;
+import controllers.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,8 +17,7 @@ public class DAOUsuario {
 		conexao.conectar();
 
 		try {
-			PreparedStatement pst = conexao.getConexao().prepareStatement(
-					"insert into bd.usuario(id_usuario,nome,idade,data_nasc,sexo,profissao,email,senha) values(?,?,?,?,?,?,?,?)");
+			PreparedStatement pst = conexao.getConexao().prepareStatement("insert into bd.usuario(id_usuario,nome,idade,data_nasc,sexo,profissao,email,senha) values(?,?,?,?,?,?,?,?)");
 			pst.setInt(1, U.getid_usuario());
 			pst.setString(2, U.getnome());
 			pst.setInt(3, U.getidade());
@@ -67,8 +66,7 @@ public class DAOUsuario {
 		conexao.conectar();
 
 		try {
-			PreparedStatement stm = conexao.getConexao()
-					.prepareStatement("delete from bd.usuario where id_usuario = \'" + id_usuario + "\'");
+			PreparedStatement stm = conexao.getConexao().prepareStatement("delete from bd.usuario where id_usuario = \'" + id_usuario + "\'");
 			stm.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());
@@ -109,14 +107,14 @@ public class DAOUsuario {
 
 		try {
 			while (resultado.next()) {
-				String email = resultado.getString("email");
-				int senha = resultado.getInt("senha");
-				String nome = resultado.getString("nome");
-				int id_usuario = resultado.getInt("id usuario");
-				int idade = resultado.getInt("idade");
-				String data_nasc = resultado.getString("data de nascimento");
-				String profissao = resultado.getString("profissao");
-				String sexo = resultado.getString("sexo");
+				String email = resultado.getString("Email: ");
+				int senha = resultado.getInt("Senha: ");
+				String nome = resultado.getString("Nome: ");
+				int id_usuario = resultado.getInt("Id usuario: ");
+				int idade = resultado.getInt("Idade: ");
+				String data_nasc = resultado.getString("Data de nascimento: ");
+				String profissao = resultado.getString("Profissao: ");
+				String sexo = resultado.getString("Sexo: ");
 				pessoas.add(new Usuario(email, senha, nome, id_usuario, idade, data_nasc, profissao, sexo));
 			}
 			resultado.next();

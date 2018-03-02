@@ -66,7 +66,7 @@ public class DAOUsuario {
 		conexao.conectar();
 
 		try {
-			PreparedStatement stm = conexao.getConexao().prepareStatement("delete from bd.usuario where id_usuario = \'" + id_usuario + "\'");
+			PreparedStatement stm = conexao.getConexao().prepareStatement("delete from bd.usuario where email = \'" + id_usuario + "\'");
 			stm.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro: " + e.getMessage());

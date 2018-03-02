@@ -11,6 +11,7 @@ public class Main {
 		//conexao.criarUsuario(U);
 		//conexao.editarPessoa("larryce",232,"larryce", 1323,16,"31/10/2001", "estudante", "feminino");
 		Usuario aux = conexao.login("larryce@hotmail", 123);
+		conexao.excluirPessoa("larryce");
 		
 		if (aux == null){
 			System.out.println("Você não está logado!");
@@ -21,7 +22,7 @@ public class Main {
 			System.out.println(buscandousuario.toString());
 			conexao.addamigo(aux.getid_usuario(), buscandousuario.getid_usuario());
 			conexao.verTodos();
-			conexao.excluirPessoa(buscandousuario.getid_usuario());
+			
 		}
 		
 		

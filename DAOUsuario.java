@@ -107,14 +107,14 @@ public class DAOUsuario {
 
 		try {
 			while (resultado.next()) {
-				String email = resultado.getString("Email: ");
-				int senha = resultado.getInt("Senha: ");
-				String nome = resultado.getString("Nome: ");
-				int id_usuario = resultado.getInt("Id usuario: ");
-				int idade = resultado.getInt("Idade: ");
-				String data_nasc = resultado.getString("Data de nascimento: ");
-				String profissao = resultado.getString("Profissao: ");
-				String sexo = resultado.getString("Sexo: ");
+				String email = resultado.getString("email");
+				int senha = resultado.getInt("senha");
+				String nome = resultado.getString("nome");
+				int id_usuario = resultado.getInt("id_usuario: ");
+				int idade = resultado.getInt("idade");
+				String data_nasc = resultado.getString("data_nasc");
+				String profissao = resultado.getString("profissao");
+				String sexo = resultado.getString("sexo");
 				pessoas.add(new Usuario(email, senha, nome, id_usuario, idade, data_nasc, profissao, sexo));
 			}
 			resultado.next();

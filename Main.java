@@ -20,7 +20,7 @@ public class Main {
 			Usuario buscandousuario = conexao.buscarPessoa("lucas@gmail.com"); 
 			System.out.println(buscandousuario.toString());
 			conexao.addamigo(aux.getid_usuario(), buscandousuario.getid_usuario());
-			conexao.verTodos(buscandousuario.getid_usuario());
+			conexao.verTodos();
 			conexao.excluirPessoa(buscandousuario.getid_usuario());
 		}
 		

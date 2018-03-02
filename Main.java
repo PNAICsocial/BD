@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -9,25 +9,20 @@ public class Main {
 		DAOUsuario conexao = new DAOUsuario();
 		Usuario U = new Usuario("larryce@hotmail", 123, "larryce", 1323, 16, "31/10", "estudante", "feminino");
 		//conexao.criarUsuario(U);
-		
 		//conexao.editarPessoa("larryce",232,"larryce", 1323,16,"31/10/2001", "estudante", "feminino");
-		//conexao.excluirPessoa(1323);
-		
-		Usuario aux= conexao.login("larryce@hotmail", 123);
+		Usuario aux = conexao.login("larryce@hotmail", 123);
 		
 		if (aux == null){
-			System.out.println("Você não está logado");
+			System.out.println("Você não está logado!");
 		}
 		else {
-			System.out.println("você está logado");
-			Usuario buscandousuario =conexao.buscarPessoa("lucas@gmail.com"); 
-			
+			System.out.println("Você está logado!");
+			Usuario buscandousuario = conexao.buscarPessoa("lucas@gmail.com"); 
 			System.out.println(buscandousuario.toString());
-			
 			conexao.addamigo(aux.getid_usuario(), buscandousuario.getid_usuario());
-			
 		}
-			
+		
+		conexao.verTodos();
+		conexao.excluirPessoa(1323);
 	}
-
 }

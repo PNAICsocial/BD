@@ -7,7 +7,8 @@ public class Feed {
 		private String nome;
 		private String email;
 		private String postagem;
-
+		private int senha;
+		private int idade;
 
 	static List <Feed> postagens = new ArrayList<>();
 	List <String> postagensenviadas = new ArrayList<>();
@@ -46,6 +47,18 @@ public String getPostagem() {
 }
 public void setPostagem(String postagem) {
 	this.postagem = postagem;
+}
+public int getSenha() {
+	return senha;
+}
+public void setSenha(int senha) {
+	this.senha = senha;
+}
+public int getIdade() {
+	return idade;
+}
+public void setIdade(int idade) {
+	this.idade = idade;
 }
 public static List<Feed> getPostagens() {
 	return postagens;
